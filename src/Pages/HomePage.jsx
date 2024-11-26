@@ -5,7 +5,7 @@ import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const { sendJsonMessage, readyState, setUserName, setHostIp } = useOutletContext();
-  const aya_alireza_gohi_khorde = false;
+  const aya_alireza_gohi_khorde = true;
 
   const [input, setInput] = useState("");
   const [ip, setIp] = useState(location.hostname);
