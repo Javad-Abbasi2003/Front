@@ -5,6 +5,10 @@ const signInUser = (userName, sendJsonMessage, setUserName) => {
 
 const resetGame = (sendJsonMessage) => {
   sendJsonMessage({ type: "reset-game" });
-}
+};
 
-export { signInUser, resetGame };
+const StartGame = (sendJsonMessage) => {
+  sendJsonMessage({ type: "start-game" });
+};
+
+export { signInUser, resetGame, StartGame };

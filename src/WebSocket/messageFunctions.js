@@ -4,20 +4,24 @@ const newPlayer = (msg, states) => {
   const {navigate, gameObject, setGameObject} = states;
   const {userName, teams, users, userTeam} = msg;
   if(userName==states.userName) {
-    navigate("/game", {replace: true});
+    navigate("/lobby", {replace: true});
     setGameObject({...gameObject, teams, users, userTeam});
   } else {
     setGameObject({...gameObject, teams, users});
   }
 }
 
-const gameStarted = (msg) => {
+const gameStarted = (msg, states) => {
+  const { gameObject, setGameObject, navigate } = states;
+  const { trumper, hands } = msg;
+  setGameObject({...gameObject, trumper, hands});
+  navigate("/game", {replace: true});
 }
-const trumpSelected = (msg) => {
+const trumpSelected = (msg, states) => {
 }
-const cardPlayed = (msg) => {
+const cardPlayed = (msg, states) => {
 }
-const roundEnded = (msg) => {
+const roundEnded = (msg, states) => {
 }
 
 // show warning toast and reload game

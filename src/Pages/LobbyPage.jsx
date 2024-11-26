@@ -1,8 +1,9 @@
 import React from "react";
 import { useOutletContext } from "react-router-dom";
-import styles from "./GamePage.module.css";
+import styles from "./LobbyPage.module.css";
+import { StartGame } from "../WebSocket/sendRequests";
 
-const GamePage = () => {
+const LobbyPage = () => {
   const { sendJsonMessage, userName, gameObject } = useOutletContext();
 
   if (!userName) location.pathname = ""; //redirect unAuthorized users
@@ -12,21 +13,21 @@ const GamePage = () => {
     <div>
       <div>
         <h3>Users:</h3>
-        {
-          gameObject.users.map((user, index) => <p key={user}>{index+1} : {user}</p>)
-        }
+        {gameObject?.users.map((user, index) =>
+          <p key={user}>{index+1} : {user}</p>
+        )}
       </div>
-      {gameObject.teams.map((team, index) =>
-        <div>
+      {gameObject?.teams.map((team, index) =>
+        <div key={index}>
           <h3>{gameObject.userTeam == index ? "Your" : "Enemy"} Team:</h3>
           {team.players.map((player,j) =>
-            <p>{j+1} : {player}</p>
+            <p key={player}>{j+1} : {player}</p>
           )}
         </div>
       )}
-      <button>Start Game</button>
+      <button onClick={() => StartGame(sendJsonMessage)}>Start Game</button>
     </div>
   </div>;
 };
 
-export default GamePage;
+export default LobbyPage;
