@@ -2,9 +2,11 @@ import {errorToast} from "../helpers/showToast";
 
 const newPlayer = (msg, states) => {
   const {navigate, gameObject, setGameObject} = states;
-  const {userName, teams, users} = msg;
+  const {userName, teams, users, userTeam} = msg;
   if(userName==states.userName) {
     navigate("/game", {replace: true});
+    setGameObject({...gameObject, teams, users, userTeam});
+  } else {
     setGameObject({...gameObject, teams, users});
   }
 }
