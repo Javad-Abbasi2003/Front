@@ -40,7 +40,7 @@ const cardPlayed = (msg, states) => {
 };
 
 const roundEnded = (msg, states) => {
-  const { userName, gameObject, setGameObject } = states;
+  const { userName, gameObject, setGameObject, navigate } = states;
   const { userTurn, middle, teams, winners } = msg;
 
   setGameObject({...gameObject, userTurn, middle, teams, winners});
@@ -49,6 +49,10 @@ const roundEnded = (msg, states) => {
     greenToast("You got the round!");
   } else {
     infoToast(`${userTurn} played the highest card`);
+  }
+
+  if(winners?.length) {
+    navigate("/result", {replace: true});
   }
 };
 
@@ -61,7 +65,7 @@ const gameReseted = () => {
     } else {
       location.pathname = "";
     }
-  }, 1000);
+  }, 5000);
 };
 
 //Show a toast for errors recieved

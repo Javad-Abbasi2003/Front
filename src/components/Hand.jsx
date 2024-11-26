@@ -9,7 +9,7 @@ const Hand = ({side, cards, userName, showCard, active}) => {
   let css;
   switch(side) {
     case "B":
-      css= {bottom:"-50px", left: "50%", transform: "translateX(-50%)"}
+      css= {bottom:"-10px", left: "50%", transform: "translateX(-50%)"}
       break;
     case "T":
       css= {top:"-50px", left: "50%", transform: "translateX(-50%) rotate(180deg)"}

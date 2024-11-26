@@ -2,7 +2,7 @@ import { Bounce, toast } from "react-toastify";
 
 const errorToast = (message) => {
   toast.error(message, {
-    position: "bottom-right",
+    position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -16,7 +16,7 @@ const errorToast = (message) => {
 
 const greenToast = (message) => {
   toast.success(message, {
-    position: "bottom-right",
+    position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -30,7 +30,7 @@ const greenToast = (message) => {
 
 const infoToast = (message) => {
   toast.info(message, {
-    position: "bottom-right",
+    position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
