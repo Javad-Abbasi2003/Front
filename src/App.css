@@ -1,0 +1,7 @@
+.reset-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 2px;
+  cursor: pointer;
+}
