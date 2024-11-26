@@ -1,4 +1,4 @@
-import {errorToast, greenToast} from "../helpers/showToast";
+import {errorToast, greenToast, infoToast} from "../helpers/showToast";
 
 const newPlayer = (msg, states) => {
   const {navigate, gameObject, setGameObject} = states;
@@ -40,6 +40,16 @@ const cardPlayed = (msg, states) => {
 };
 
 const roundEnded = (msg, states) => {
+  const { userName, gameObject, setGameObject } = states;
+  const { userTurn, middle, teams, winners } = msg;
+
+  setGameObject({...gameObject, userTurn, middle, teams, winners});
+
+  if(userName == userTurn) {
+    greenToast("You got the round!");
+  } else {
+    infoToast(`${userTurn} played the highest card`);
+  }
 };
 
 // show warning toast and reload game

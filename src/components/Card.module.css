@@ -1,7 +1,7 @@
 .container {
   position: relative;
   width: 80px;
-  height: 150px;
+  height: 130px;
   border: solid black 1px;
   border-radius: 10px;
   background-color: white;
@@ -12,12 +12,15 @@
 .container:hover {
   box-shadow: blue 0 0 10px;
 }
-.pointer {
-  cursor: pointer;
-}
-.notAllowed {
 
+.user {
+  color: black;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
 .value {
   position: absolute;
   top: 5px;

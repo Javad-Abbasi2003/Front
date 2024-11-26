@@ -1,6 +1,6 @@
 import styles from "./Card.module.css";
 
-const Card = ({card, showCard, active, onClick}) => {
+const Card = ({card, showCard, active, onClick, isMiddleCard=false}) => {
   const cardColor = (card.suit=="♥")||(card.suit=="♦") ? "red" : "black";
 
   if(!showCard) {
@@ -12,7 +12,10 @@ const Card = ({card, showCard, active, onClick}) => {
   }
 
   return (
-    <div style={{color: cardColor, cursor: active?"pointer":"not-allowed"}} className={styles.container} onClick={() => active && onClick()}>
+    <div style={{color: cardColor, cursor: active?"pointer": !isMiddleCard ?"not-allowed" : ""}} className={styles.container} onClick={() => active && onClick()}>
+      {isMiddleCard && 
+        <span className={styles.user}>{card.user}</span>
+      }
       <div className={styles.value}>
         <p>{card.name}</p>
         <p>{card.suit}</p>

@@ -60,9 +60,9 @@ const GamePage = () => {
           }
           
           <div className={styles.middle}>
-          {gameObject.middle?.cards?.map(card=> {
-            <Card card={card} showCard={true} active={false}/>
-          })}
+            {gameObject.middle?.cards.map(card => 
+              <Card card={card} showCard={true} active={false} isMiddleCard={true}/>
+            )}
           </div>
         </div>
       }
