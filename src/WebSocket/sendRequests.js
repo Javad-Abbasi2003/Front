@@ -11,4 +11,23 @@ const StartGame = (sendJsonMessage) => {
   sendJsonMessage({ type: "start-game" });
 };
 
-export { signInUser, resetGame, StartGame };
+const playCard = (card, sendJsonMessage) => {
+  sendJsonMessage({
+    type: "play-card",
+    payload: {
+      playedCard: card
+    }
+  });
+};
+
+const selectedTrump = (trump, userName, sendJsonMessage) => {
+  sendJsonMessage({
+    type: "select-trump",
+    payload: {
+      newTrump: trump,
+      userName
+    }
+  });
+}
+
+export { signInUser, resetGame, StartGame, playCard, selectedTrump };

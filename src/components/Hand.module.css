@@ -1,0 +1,11 @@
+.container {
+  position: absolute;
+}
+.userName {
+  position: absolute;
+  top: -30px;
+  left: 0;
+}
+.cards {
+  display: flex;
+}

@@ -1,0 +1,48 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+.hands {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.trumpsContainer, .waitForTrump {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgray;
+  border: solid black 1px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: gray 0 0 20px;
+}
+.trumpsContainer > div {
+  display: flex;
+  gap: 30px;
+  
+}
+.trumpsContainer h2 {
+  font-size: 5rem;
+  cursor: pointer;
+  transition: text-shadow ease-in-out 0.3s;
+}
+.trumpsContainer h2:hover {
+  text-shadow: #2222ff 0 0 20px;
+}
+
+.waitForTrump {
+  font-size: 3rem;
+}
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

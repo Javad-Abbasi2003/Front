@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+  width: 80px;
+  height: 150px;
+  border: solid black 1px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: grey 0 10px 10px;
+  margin-left: -60px;
+  transition: box-shadow ease-in-out 0.2s;
+}
+.container:hover {
+  box-shadow: blue 0 0 10px;
+}
+.pointer {
+  cursor: pointer;
+}
+.notAllowed {
+
+}
+.value {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.suit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+}
+.valueR {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  transform: rotate(180deg);
+}
