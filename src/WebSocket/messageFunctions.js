@@ -31,6 +31,12 @@ const trumpSelected = (msg, states) => {
 };
 
 const cardPlayed = (msg, states) => {
+  const { userName, gameObject, setGameObject } = states;
+  const { userTurn, middle, hands } = msg;
+
+  setGameObject({...gameObject, userTurn, middle, hands});
+
+  if(userName == userTurn) greenToast("It's your turn");
 };
 
 const roundEnded = (msg, states) => {
