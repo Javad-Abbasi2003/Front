@@ -1,4 +1,4 @@
-import { newPlayer, gameStarted, trumpSelected, cardPlayed, roundEnded, error, gameReseted } from "./messageFunctions";
+import { newPlayer, gameStarted, trumpSelected, cardPlayed, roundEnded, error, gameReseted, newGame } from "./messageFunctions";
 
 const messageHandler = (message, states) => {
   switch (message.type) {
@@ -19,6 +19,9 @@ const messageHandler = (message, states) => {
       break;
     case "game-reseted":
       gameReseted();
+      break;
+    case "new-game":
+      newGame(message, states);
       break;
     case "error":
       error(message);

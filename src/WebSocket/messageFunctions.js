@@ -74,5 +74,12 @@ const error = (msg) => {
   errorToast(message);
 };
 
+const newGame = (msg, states) => {
+  const { setGameObject } = states;
+  const { gameObject } = msg;
 
-export {newPlayer, gameStarted, trumpSelected, cardPlayed, roundEnded, error, gameReseted};
+  setGameObject(gameObject);
+}
+
+
+export {newPlayer, gameStarted, trumpSelected, cardPlayed, roundEnded, error, gameReseted, newGame};

@@ -30,4 +30,10 @@ const selectedTrump = (trump, userName, sendJsonMessage) => {
   });
 }
 
-export { signInUser, resetGame, StartGame, playCard, selectedTrump };
+const newGame = (sendJsonMessage) => {
+  sendJsonMessage({
+    type: "new-game"
+  })
+}
+
+export { signInUser, resetGame, StartGame, playCard, selectedTrump, newGame };
