@@ -3,7 +3,6 @@ import styles from "./GamePage.module.css";
 import Card from "../components/Card";
 import Hand from "../components/hand";
 import { selectedTrump } from "../WebSocket/sendRequests";
-// import {trumpSelected} from "../WebSocket/messageFunctions";
 
 const GamePage = () => {
   const { sendJsonMessage, userName, gameObject } = useOutletContext();
