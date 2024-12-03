@@ -22,12 +22,17 @@ const gameStarted = (msg, states) => {
 };
 
 const trumpSelected = (msg, states) => {
-  const { userName, gameObject, setGameObject } = states;
+  const { gameObject, setGameObject } = states;
   const { trump, userTurn, hands } = msg;
 
   setGameObject({...gameObject, trump, userTurn, hands});
 
-  greenToast(`Trump is ${trump}`);
+  const suits = ["♥", "♦", "♣", "♠"]
+  const colors = ["Red", "Blue", "Green", "Yellow"]
+
+  const i = suits.indexOf(trump);
+
+  greenToast(`Trump is ${colors[i]}`);
 };
 
 const cardPlayed = (msg, states) => {

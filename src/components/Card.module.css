@@ -4,13 +4,13 @@
   height: 130px;
   border: solid black 1px;
   border-radius: 10px;
-  background-color: white;
   box-shadow: grey 0 10px 10px;
   margin-left: -60px;
-  transition: box-shadow ease-in-out 0.2s;
+  transition: box-shadow ease-in-out 0.2s, transform ease-in-out 0.1s;
 }
 .container:hover {
   box-shadow: blue 0 0 10px;
+  transform: translateY(-20px);
 }
 
 .user {

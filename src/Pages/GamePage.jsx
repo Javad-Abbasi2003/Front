@@ -11,15 +11,21 @@ const GamePage = () => {
   if (!userName) location.pathname = ""; //redirect unAuthorized users
 
   const suits = ["♥", "♦", "♣", "♠"];
+  const colors = ["Red", "Blue", "Green", "Yellow"];
+
+  const colorI = suits.indexOf(gameObject.trump);
 
   return (
     <>
       {gameObject && 
         <div className={styles.container}>
           <div>
-          <h2>ScoreBoard:</h2>
-          <p>Your Team: {gameObject.teams[gameObject.userTeam].score}</p>
-          <p>Enemy Team: {gameObject.teams[gameObject.userTeam ? 0 : 1].score}</p>
+            {gameObject.trump && 
+              <h1 style={{color:colors[colorI]}}>Main Color is {colors[colorI]}</h1>
+            }
+            <h2>ScoreBoard:</h2>
+            <p>Your Team: {gameObject.teams[gameObject.userTeam].score}</p>
+            <p>Enemy Team: {gameObject.teams[gameObject.userTeam ? 0 : 1].score}</p>
           </div>
           <div className={styles.hands}>
             {gameObject.hands &&
@@ -42,9 +48,9 @@ const GamePage = () => {
             <div className={styles.trumpsContainer}>
               <h1>select Trump: </h1>
               <div>
-                {suits.map(suit =>
+                {suits.map((suit, index) =>
                   <div key={suit} onClick={() => selectedTrump(suit, userName, sendJsonMessage)}>
-                    <h2>{suit}</h2>
+                    <h2 style={{color: colors[index]}}>{colors[index]}</h2>
                   </div>
                 )}
               </div>

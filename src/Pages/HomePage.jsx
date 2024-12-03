@@ -5,7 +5,6 @@ import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const { sendJsonMessage, readyState, setUserName, setHostIp } = useOutletContext();
-  const aya_alireza_gohi_khorde = true;
 
   const [input, setInput] = useState("");
   const [ip, setIp] = useState(location.hostname);
@@ -13,10 +12,10 @@ const HomePage = () => {
   const ipColor = (readyState==1) ? "green" : (readyState==0) ? "gold" : "red";
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Hokm Lan</h1>
+      <h1 className={styles.header}>Colors Lan</h1>
       <h3 className={styles.programmersHeader}>Programmers:</h3>
       <h4 className={styles.programmers}>MohammadJavad Abbasi</h4>
-      {aya_alireza_gohi_khorde && <h4 className={styles.programmers}>Alireza Salimi</h4>}
+      <h4 className={styles.programmers}>Alireza Salimi</h4>
       <div className={styles.form}>
         <div className={styles.nameContainer}>
           <label>Host IP: </label>
