@@ -19,7 +19,7 @@ const GamePage = () => {
     <>
       {gameObject && 
         <div className={styles.container}>
-          <div>
+          <div style={{margin: "10px"}}>
             {gameObject.trump && 
               <h1 style={{color:colors[colorI]}}>Main Color is {colors[colorI]}</h1>
             }

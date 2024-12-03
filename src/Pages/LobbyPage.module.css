@@ -1,4 +1,29 @@
 .container {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container > div {
+  background-color: lightgray;
+  border: solid grey 1px;
+  box-shadow: grey 5px 5px 20px;
+  border-radius: 20px;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: black solid 1px;
+}
+button {
+  padding: 5px;
+  cursor: pointer;
 }
