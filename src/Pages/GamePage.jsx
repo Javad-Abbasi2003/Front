@@ -19,9 +19,9 @@ const GamePage = () => {
     <>
       {gameObject && 
         <div className={styles.container}>
-          <div style={{margin: "10px"}}>
+          <div className={styles.scoreBoard}>
             {gameObject.trump && 
-              <h1 style={{color:colors[colorI]}}>Main Color is {colors[colorI]}</h1>
+              <h1 style={{color:colors[colorI]}}>Color: {colors[colorI]}</h1>
             }
             <h2>ScoreBoard:</h2>
             <p>Your Team: {gameObject.teams[gameObject.userTeam].score}</p>
@@ -48,9 +48,9 @@ const GamePage = () => {
             <div className={styles.trumpsContainer}>
               <h1>select Trump: </h1>
               <div>
-                {suits.map((suit, index) =>
-                  <div key={suit} onClick={() => selectedTrump(suit, userName, sendJsonMessage)}>
-                    <h2 style={{color: colors[index]}}>{colors[index]}</h2>
+                {colors.map((color, index) =>
+                  <div key={color} onClick={() => selectedTrump(suits[index], userName, sendJsonMessage)}>
+                    <h2 style={{color: color}}>{color}</h2>
                   </div>
                 )}
               </div>
