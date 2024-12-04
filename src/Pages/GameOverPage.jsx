@@ -5,7 +5,11 @@ import { newGame } from "../WebSocket/sendRequests";
 const GameOverPage = () => {
   const { sendJsonMessage, userName, gameObject } = useOutletContext();
 
-  
+  if (!userName) location.pathname = ""; //redirect unAuthorized users
+
+  if(gameObject.winners.length == 0) return(
+    <h1>ReStarting...</h1>
+  )
 
   return (
     <div className={styles.container}>
