@@ -12,7 +12,7 @@ const HomePage = () => {
   const ipColor = (readyState==1) ? "green" : (readyState==0) ? "gold" : "red";
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Colors Lan</h1>
+      <h1 className={styles.header}>Hokm Lan</h1>
       <h3 className={styles.programmersHeader}>Programmers:</h3>
       <h4 className={styles.programmers}>MohammadJavad Abbasi</h4>
       <h4 className={styles.programmers}>Alireza Salimi</h4>

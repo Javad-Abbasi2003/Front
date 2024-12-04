@@ -15,7 +15,7 @@ const gameStarted = (msg, states) => {
   const { userName, gameObject, setGameObject, navigate } = states;
   const { trumper, hands } = msg;
   if(gameObject.users.includes(userName)) {
-    greenToast(trumper + " is the COLORER!");
+    greenToast(trumper + " is the TRUMPER!");
     setGameObject({...gameObject, trumper, hands});
     navigate("/game", {replace: true});
   }
@@ -27,12 +27,7 @@ const trumpSelected = (msg, states) => {
 
   setGameObject({...gameObject, trump, userTurn, hands});
 
-  const suits = ["♥", "♦", "♣", "♠"];
-  const colors = ["Red", "Blue", "Green", "Yellow"];
-
-  const i = suits.indexOf(trump);
-
-  greenToast(`Trump is ${colors[i]}`);
+  greenToast(`Trump is ${trump}`);
 };
 
 const cardPlayed = (msg, states) => {
