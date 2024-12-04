@@ -22,7 +22,7 @@ const gameStarted = (msg, states) => {
 };
 
 const trumpSelected = (msg, states) => {
-  const { userName, gameObject, setGameObject } = states;
+  const { gameObject, setGameObject } = states;
   const { trump, userTurn, hands } = msg;
 
   setGameObject({...gameObject, trump, userTurn, hands});
@@ -75,10 +75,10 @@ const error = (msg) => {
 };
 
 const newGame = (msg, states) => {
-  const { setGameObject } = states;
-  const { gameObject } = msg;
+  const { gameObject, setGameObject } = states;
+  const { newGameObject } = msg;
 
-  setGameObject(gameObject);
+  setGameObject({...gameObject, ...newGameObject});
 }
 
 

@@ -28,6 +28,7 @@ function App() {
     if(lastJsonMessage) {
       console.log("lastJsonMessage: ", lastJsonMessage)
       messageHandler(lastJsonMessage, {userName, gameObject, setGameObject, navigate});
+      console.log(gameObject)
     }
   }, [lastJsonMessage]);
 

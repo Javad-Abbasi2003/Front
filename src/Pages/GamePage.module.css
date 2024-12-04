@@ -2,6 +2,16 @@
   width: 100vw;
   height: 100vh;
 }
+.scoreBoard {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  padding: 10px;
+  border-end-end-radius: 20px;
+  background-color: lightgrey;
+  border: solid black 1px;  
+  box-shadow: grey 0 0 10px;
+}
 .hands {
   position: absolute;
   top: 0;
@@ -34,7 +44,7 @@
   transition: text-shadow ease-in-out 0.3s;
 }
 .trumpsContainer h2:hover {
-  text-shadow: #2222ff 0 0 20px;
+  text-shadow: rgb(0, 47, 255) 0 0 15px;
 }
 
 .waitForTrump {

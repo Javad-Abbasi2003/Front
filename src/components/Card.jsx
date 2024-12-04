@@ -1,7 +1,11 @@
 import styles from "./Card.module.css";
 
 const Card = ({card, showCard, active, onClick, isMiddleCard=false}) => {
-  const cardColor = (card.suit=="♥")||(card.suit=="♦") ? "red" : "black";
+  const suits = ["♥", "♦", "♣", "♠"];
+  const colors = ["Red", "Red", "black", "black"];
+
+  const colorI = suits.indexOf(card.suit);
+  const cardColor = colors[colorI];
 
   if(!showCard) {
     return(
@@ -10,6 +14,8 @@ const Card = ({card, showCard, active, onClick, isMiddleCard=false}) => {
       </div>
     )
   }
+
+  
 
   return (
     <div style={{color: cardColor, cursor: active?"pointer": !isMiddleCard ?"not-allowed" : ""}} className={styles.container} onClick={() => active && onClick()}>
@@ -21,7 +27,7 @@ const Card = ({card, showCard, active, onClick, isMiddleCard=false}) => {
         <p>{card.suit}</p>
       </div>
       <h1 className={styles.suit}>{card.suit}</h1>
-      <div  className={styles.valueR}>
+      <div className={styles.valueR}>
         <p>{card.name}</p>
         <p>{card.suit}</p>
       </div>
