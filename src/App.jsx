@@ -13,8 +13,8 @@ function App() {
 
   const navigate = useNavigate();
 
-  const [hostIp, setHostIp] = useState(location.hostname);
-  const WS_URL = `ws://${hostIp}:8000`;
+  const [hostIp, setHostIp] = useState("wss://hokmapi.abbasishavazi.ir:443");
+  const WS_URL = `${hostIp}`;
   
   const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
     WS_URL,

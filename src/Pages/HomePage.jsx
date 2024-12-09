@@ -7,7 +7,7 @@ const HomePage = () => {
   const { sendJsonMessage, readyState, setUserName, setHostIp } = useOutletContext();
 
   const [input, setInput] = useState("");
-  const [ip, setIp] = useState(location.hostname);
+  const [ip, setIp] = useState("wss://hokmapi.abbasishavazi.ir:443");
 
   const ipColor = (readyState==1) ? "green" : (readyState==0) ? "gold" : "red";
   return (
