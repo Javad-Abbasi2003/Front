@@ -2,11 +2,11 @@ import { useOutletContext } from "react-router-dom";
 import styles from "./GamePage.module.css";
 import Card from "../components/Card";
 import Hand from "../components/hand";
-import { selectedTrump } from "../WebSocket/sendRequests";
+import { selectTrump } from "../WebSocket/sendRequests";
 // import {trumpSelected} from "../WebSocket/messageFunctions";
 
 const GamePage = () => {
-  const { sendJsonMessage, userName, gameObject } = useOutletContext();
+  const { sendJsonMessage, userName, roomCode, gameObject } = useOutletContext();
 
   if (!userName) location.pathname = ""; //redirect unAuthorized users
 
@@ -23,16 +23,30 @@ const GamePage = () => {
               <h1 style={{color:suitColor[suits.indexOf(gameObject.trump)]}}>Trump: {gameObject.trump}</h1>
             }
             <h2>ScoreBoard:</h2>
-            <p>Your Team: {gameObject.teams[gameObject.userTeam].score}</p>
-            <p>Enemy Team: {gameObject.teams[gameObject.userTeam ? 0 : 1].score}</p>
+            <div style={{color:"green"}}>
+              <span>
+                Your Score:{gameObject.teams[gameObject.userTeam].score}
+              </span>
+              <span>
+                Total:{gameObject.teams[gameObject.userTeam].totalScore}
+              </span>
+            </div>
+            <div>
+              <span>
+                Enemy Score:{gameObject.teams[gameObject.userTeam ? 0 : 1].score}
+              </span>
+              <span>
+                Total:{gameObject.teams[gameObject.userTeam ? 0 : 1].totalScore}
+              </span>
+            </div>
           </div>
           <div className={styles.hands}>
-            {gameObject.hands &&
+            {gameObject.hand &&
               <>
                 <Hand
-                side="B" cards={gameObject.hands[userName]}
-                userName={userName} showCard={true}
-                active={gameObject.userTurn == userName}
+                  side="B" cards={gameObject.hand}
+                  userName={userName} showCard={true}
+                  active={gameObject.userTurn == userName}
                 />
                 {/* <div>your Ally Hand</div>
                 
@@ -48,7 +62,7 @@ const GamePage = () => {
               <h1>select Trump: </h1>
               <div>
                 {suits.map((suit, index) =>
-                  <div key={suit} onClick={() => selectedTrump(suits[index], userName, sendJsonMessage)}>
+                  <div key={suit} onClick={() => selectTrump(suits[index], userName, roomCode, sendJsonMessage)}>
                     <h2 style={{color: suitColor[index]}}>{suit}</h2>
                   </div>
                 )}
@@ -58,7 +72,7 @@ const GamePage = () => {
             <>
               {!gameObject.trump &&
                 <div className={styles.waitForTrump}>
-                Wait for Trumper to Trump!
+                  Wait for Trumper to Trump!
                 </div>
               }
             </>
