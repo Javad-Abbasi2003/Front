@@ -8,8 +8,8 @@ const HomePage = () => {
 
   const [userNameInput, setUserNameInput] = useState("");
   const [roomCodeInput, setRoomCodeInput] = useState("");
-  // const [ip, setIp] = useState("wss://hokmapi.abbasishavazi.ir:443");
-  const [ip, setIp] = useState("ws://localhost:3000");
+  const [ip, setIp] = useState("wss://hokmapi.abbasishavazi.ir:443");
+  // const [ip, setIp] = useState("ws://localhost:3000");
 
   const ipColor = (readyState==1) ? "green" : (readyState==0) ? "gold" : "red";
   return (
