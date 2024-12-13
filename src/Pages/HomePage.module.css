@@ -13,24 +13,32 @@
 }
 
 .form {
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 10px;
 }
 
-.nameContainer {
+.inputContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 5px;
 }
-.nameContainer input {
-  padding: 3px;
+.inputContainer input {
+  padding: 5px ;
   border-radius: 5px;
 }
 
-.joinBtn {
+.joinBtns {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
+}
+.joinBtns button {
   padding: 5px;
   cursor: pointer;
+  width: 100%;
 }

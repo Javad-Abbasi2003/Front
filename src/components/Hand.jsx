@@ -4,7 +4,7 @@ import styles from "./Hand.module.css";
 import { useOutletContext } from 'react-router-dom';
 
 const Hand = ({side, cards, userName, showCard, active}) => {
-  const { sendJsonMessage } = useOutletContext();
+  const { sendJsonMessage, roomCode } = useOutletContext();
 
   let css;
   switch(side) {
@@ -30,7 +30,7 @@ const Hand = ({side, cards, userName, showCard, active}) => {
           <Card
           key={card.value+card.suit} card={card}
           showCard={showCard} active={active}
-          onClick={() => playCard({...card, user: userName}, sendJsonMessage)}
+          onClick={() => playCard({...card, user: userName}, roomCode, sendJsonMessage)}
           />
         )}
       </div>

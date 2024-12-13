@@ -1,39 +1,68 @@
-const signInUser = (userName, sendJsonMessage, setUserName) => {
+const createRoom = (userName, roomCodeInput, sendJsonMessage, setUserName, setRoomCode) => {
   setUserName(userName);
-  sendJsonMessage({ type: "add-player", payload: {userName} });
-};
+  setRoomCode(roomCodeInput);
 
-const resetGame = (sendJsonMessage) => {
-  sendJsonMessage({ type: "reset-game" });
-};
-
-const StartGame = (sendJsonMessage) => {
-  sendJsonMessage({ type: "start-game" });
-};
-
-const playCard = (card, sendJsonMessage) => {
   sendJsonMessage({
-    type: "play-card",
+    type: "new-room",
     payload: {
-      playedCard: card
+      userName,
+      roomCode: roomCodeInput
     }
   });
 };
 
-const selectedTrump = (trump, userName, sendJsonMessage) => {
+const joinRoom = (userName, roomCodeInput, sendJsonMessage, setUserName, setRoomCode) => {
+  setUserName(userName);
+  setRoomCode(roomCodeInput);
+  
+  sendJsonMessage({
+    type: "join-room",
+    payload: {
+      userName,
+      roomCode: roomCodeInput
+    }
+  });
+};
+
+const startGame = (sendJsonMessage, userName, roomCode) => {
+  sendJsonMessage({
+    type: "start-game",
+    payload: {
+      userName,
+      roomCode
+    }
+  });
+};
+
+const selectTrump = (trump, userName, roomCode, sendJsonMessage) => {
   sendJsonMessage({
     type: "select-trump",
     payload: {
       newTrump: trump,
-      userName
+      userName,
+      roomCode
     }
   });
-}
+};
 
-const newGame = (sendJsonMessage) => {
+const playCard = (card, roomCode, sendJsonMessage) => {
   sendJsonMessage({
-    type: "new-game"
-  })
-}
+    type: "play-card",
+    payload: {
+      playedCard: card,
+      roomCode
+    }
+  });
+};
 
-export { signInUser, resetGame, StartGame, playCard, selectedTrump, newGame };
+const newGame = (userName, roomCode, sendJsonMessage) => {
+  sendJsonMessage({
+    type: "new-game",
+    payload: {
+      userName,
+      roomCode
+    }
+  });
+};
+
+export { createRoom, joinRoom, startGame, playCard, selectTrump, newGame };

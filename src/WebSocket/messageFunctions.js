@@ -1,85 +1,150 @@
 import {errorToast, greenToast, infoToast} from "../helpers/showToast";
 
-const newPlayer = (msg, states) => {
-  const {navigate, gameObject, setGameObject} = states;
-  const {userName, teams, users, userTeam} = msg;
-  if(userName==states.userName) {
-    navigate("/lobby", {replace: true});
-    setGameObject({...gameObject, teams, users, userTeam});
-  } else {
-    setGameObject({...gameObject, teams, users});
-  };
+const roomCreated = (msg, states) => {
+  const {navigate, setGameObject, roomCode} = states;
+  const {
+    teams,
+    userTeam,
+    roomAdmin
+  } = msg;
+
+  navigate("/lobby", {replace: true});
+  setGameObject({teams, userTeam, roomAdmin});
+
+  greenToast(`Room ${roomCode} created successfully!`);
+};
+
+const joinedRoom = (msg, states) => {
+  const {navigate, setGameObject} = states;
+  const {
+    teams,
+    userTeam,
+    roomAdmin
+  } = msg;
+
+  navigate("/lobby", {replace: true});
+  setGameObject({teams, userTeam, roomAdmin});
+};
+
+const newUser = (msg, states) => {
+  const { gameObject, setGameObject } = states;
+  const {
+    teams,
+    userName
+  } = msg;
+
+  setGameObject({...gameObject, teams});
+  infoToast(`${userName} joined room`);
 };
 
 const gameStarted = (msg, states) => {
-  const { userName, gameObject, setGameObject, navigate } = states;
-  const { trumper, hands } = msg;
-  if(gameObject.users.includes(userName)) {
-    greenToast(trumper + " is the TRUMPER!");
-    setGameObject({...gameObject, trumper, hands});
-    navigate("/game", {replace: true});
-  }
+  const { gameObject, setGameObject, navigate } = states;
+  const {
+    trumper,
+    hand
+  } = msg;
+
+  const newGameObject = {
+    ...gameObject,
+    trumper,
+    hand,
+    // reseting values for new game
+    winners: [],
+    trump: "",
+    userTurn: ""
+  };
+  newGameObject.teams[0].score = 0;
+  newGameObject.teams[1].score = 0;
+
+  setGameObject(newGameObject);
+  navigate("/game", {replace: true});
+
+  greenToast(trumper + " is the TRUMPER!");
 };
 
 const trumpSelected = (msg, states) => {
   const { gameObject, setGameObject } = states;
-  const { trump, userTurn, hands } = msg;
+  const {
+    trump,
+    userTurn,
+    hand
+  } = msg;
 
-  setGameObject({...gameObject, trump, userTurn, hands});
+  setGameObject({...gameObject, trump, userTurn, hand});
 
   greenToast(`Trump is ${trump}`);
 };
 
+const newHand = (msg, states) => {
+  const { gameObject, setGameObject } = states;
+  const {
+    hand
+  } = msg;
+
+  setGameObject({...gameObject, hand});
+};
+
 const cardPlayed = (msg, states) => {
   const { userName, gameObject, setGameObject } = states;
-  const { userTurn, middle, hands } = msg;
+  const {
+    middle,
+    userTurn
+  } = msg;
 
-  setGameObject({...gameObject, userTurn, middle, hands});
+  setGameObject({...gameObject, middle, userTurn});
 
   if(userName == userTurn) greenToast("It's your turn");
 };
 
 const roundEnded = (msg, states) => {
   const { userName, gameObject, setGameObject, navigate } = states;
-  const { userTurn, middle, teams, winners } = msg;
+  const {
+    teams,
+    userTurn,
+    winners
+  } = msg;
 
-  setGameObject({...gameObject, userTurn, middle, teams, winners});
+  setGameObject({
+    ...gameObject,
+    teams,
+    middle: {cards: [], baseSuit: ""},
+    userTurn,
+    winners
+  });
 
   if(userName == userTurn) {
     greenToast("You got the round!");
   } else {
     infoToast(`${userTurn} played the highest card`);
-  }
+  };
 
-  if(winners?.length) {
-    navigate("/result", {replace: true});
-  }
+  if(winners.length) navigate("/result", {replace: true});
 };
 
-// show warning toast and reload game
 const gameReseted = () => {
-  errorToast("Game was ReStarted by a user. reloading page...");
+  // show warning toast and reload game
+  errorToast("Game was ReStarted by Developer. reloading page...");
+
   setTimeout(() => {
     if (location.pathname == "/") {
-      location.reload()
+      location.reload();
     } else {
       location.pathname = "";
-    }
-  }, 5000);
+    };
+  }, 4000);// 4sec
 };
 
-//Show a toast for errors recieved
 const error = (msg) => {
-  const {message} = msg;
+  //Show a toast for errors recieved
+  const {
+    message,
+    callback
+  } = msg;
+
   errorToast(message);
+
+  if (callback == "reset-app") location.pathname = "";
 };
 
-const newGame = (msg, states) => {
-  const { gameObject, setGameObject } = states;
-  const { newGameObject } = msg;
 
-  setGameObject({...gameObject, ...newGameObject});
-}
-
-
-export {newPlayer, gameStarted, trumpSelected, cardPlayed, roundEnded, error, gameReseted, newGame};
+export { roomCreated, joinedRoom, newUser, gameStarted, trumpSelected, newHand, cardPlayed, roundEnded, error, gameReseted };

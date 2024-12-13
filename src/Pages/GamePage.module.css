@@ -12,6 +12,12 @@
   border: solid black 1px;  
   box-shadow: grey 0 0 10px;
 }
+.scoreBoard > div {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: space-between;
+}
 .hands {
   position: absolute;
   top: 0;

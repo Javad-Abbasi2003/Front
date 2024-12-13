@@ -1,9 +1,15 @@
-import { newPlayer, gameStarted, trumpSelected, cardPlayed, roundEnded, error, gameReseted, newGame } from "./messageFunctions";
+import { roomCreated, joinedRoom, newUser, gameStarted, trumpSelected, newHand, cardPlayed, roundEnded, error, gameReseted } from "./messageFunctions";
 
 const messageHandler = (message, states) => {
   switch (message.type) {
-    case "new-player":
-      newPlayer(message, states);
+    case "room-created":
+      roomCreated(message, states);
+      break;
+    case "join-successful":
+      joinedRoom(message, states);
+      break;
+    case "new-user":
+      newUser(message, states);
       break;
     case "game-started":
       gameStarted(message, states);
@@ -11,20 +17,20 @@ const messageHandler = (message, states) => {
     case "trump-selected":
       trumpSelected(message, states);
       break;
+    case "new-hand":
+      newHand(message, states);
+      break;
     case "card-played":
       cardPlayed(message, states);
       break;
     case "round-ended":
       roundEnded(message, states);
       break;
-    case "game-reseted":
-      gameReseted();
-      break;
-    case "new-game":
-      newGame(message, states);
-      break;
     case "error":
       error(message);
+      break;
+    case "game-reseted":
+      gameReseted();
       break;
     
     default:
