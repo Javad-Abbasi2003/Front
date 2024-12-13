@@ -14,7 +14,7 @@ const HomePage = () => {
   const ipColor = (readyState==1) ? "green" : (readyState==0) ? "gold" : "red";
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Hokm Lan</h1>
+      <h1 className={styles.header}>Hokm OnLine</h1>
       <h3 className={styles.programmersHeader}>Programmers:</h3>
       <h4 className={styles.programmers}>MohammadJavad Abbasi</h4>
       <div className={styles.form}>
@@ -33,7 +33,7 @@ const HomePage = () => {
         </div>
         <div className={styles.joinBtns}>
           <button onClick={()=> (readyState==1) ? joinRoom(userNameInput, roomCodeInput, sendJsonMessage, setUserName, setRoomCode) : ""}>
-            Join Room
+            Join/Reconnect Room
           </button>
           <button onClick={()=> (readyState==1) ? createRoom(userNameInput, roomCodeInput, sendJsonMessage, setUserName, setRoomCode) : ""}>
             Create Room

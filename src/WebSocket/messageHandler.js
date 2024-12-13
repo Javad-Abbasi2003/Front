@@ -1,4 +1,4 @@
-import { roomCreated, joinedRoom, newUser, gameStarted, trumpSelected, newHand, cardPlayed, roundEnded, error, gameReseted } from "./messageFunctions";
+import { roomCreated, joinedRoom, newUser, gameStarted, trumpSelected, newHand, cardPlayed, roundEnded, error, gameReseted, notify, userLeft, userDisconnected, reconnected } from "./messageFunctions";
 
 const messageHandler = (message, states) => {
   switch (message.type) {
@@ -26,13 +26,25 @@ const messageHandler = (message, states) => {
     case "round-ended":
       roundEnded(message, states);
       break;
-    case "error":
-      error(message);
+    case "user-left":
+      userLeft(message, states);
+      break;
+    case "user-disconnected":
+      userDisconnected(message);
+      break;
+    case "reconnected":
+      reconnected(message, states);
       break;
     case "game-reseted":
       gameReseted();
       break;
-    
+    case "error":
+      error(message);
+      break;
+    case "notify":
+      notify(message);
+      break;
+
     default:
       console.log("Unexpected WebSocket Message Recieved! \n Message: ", message);
       break;

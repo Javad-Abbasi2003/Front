@@ -1,4 +1,4 @@
-import {errorToast, greenToast, infoToast} from "../helpers/showToast";
+import {errorToast, greenToast, infoToast, warnToast} from "../helpers/showToast";
 
 const roomCreated = (msg, states) => {
   const {navigate, setGameObject, roomCode} = states;
@@ -121,6 +121,52 @@ const roundEnded = (msg, states) => {
   if(winners.length) navigate("/result", {replace: true});
 };
 
+const userLeft = (msg, states) => {
+  const { gameObject, setGameObject } = states;
+  const {
+    userName,
+    teams,
+    roomAdmin
+  } = msg;
+
+  errorToast(`"${userName}" left the game!`);
+  if(roomAdmin != gameObject.roomAdmin) {
+    warnToast(`${(roomAdmin == states.userName) ? "You are" : `"${roomAdmin}" is`} the new Admin!`);
+  };
+
+  setGameObject({
+    ...gameObject,
+    teams,
+    roomAdmin
+  });
+};
+
+const userDisconnected = (msg) => {
+  const {
+    userName
+  } = msg;
+
+  errorToast(`${userName} disconnected! Wait for them to reConnect ♥`);
+};
+
+const reconnected = (msg, states) => {
+  const { setGameObject, navigate } = states;
+  const newGameObject = {...msg};
+
+  // msg has a type that should not be in gameObject => delete newGameObject.type
+  delete newGameObject["type"];
+
+  setGameObject(newGameObject);
+
+  greenToast(`Successfully reconnected.`);
+
+  if(msg.winners.length == 0) {
+    navigate("/game", {replace: true});
+  } else {
+    navigate("/result", {replace: true});
+  }
+};
+
 const gameReseted = () => {
   // show warning toast and reload game
   errorToast("Game was ReStarted by Developer. reloading page...");
@@ -146,5 +192,14 @@ const error = (msg) => {
   if (callback == "reset-app") location.pathname = "";
 };
 
+const notify = (msg) => {
+  //Show a toast for notification recieved
+  const {
+    message
+  } = msg;
 
-export { roomCreated, joinedRoom, newUser, gameStarted, trumpSelected, newHand, cardPlayed, roundEnded, error, gameReseted };
+  warnToast(message);
+};
+
+
+export { roomCreated, joinedRoom, newUser, gameStarted, trumpSelected, newHand, cardPlayed, roundEnded, userLeft, userDisconnected, reconnected, gameReseted, error, notify };

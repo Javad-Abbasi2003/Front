@@ -25,8 +25,8 @@ const greenToast = (message) => {
     progress: undefined,
     theme: "light",
     transition: Bounce,
-  })
-}
+  });
+};
 
 const infoToast = (message) => {
   toast.info(message, {
@@ -39,7 +39,21 @@ const infoToast = (message) => {
     progress: undefined,
     theme: "light",
     transition: Bounce,
-  })
-}
+  });
+};
 
-export { errorToast, greenToast, infoToast };
+const warnToast = (message) => {
+  toast.warn(message, {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+  });
+};
+
+export { errorToast, greenToast, infoToast, warnToast };
